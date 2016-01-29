@@ -1,3 +1,8 @@
-/**
- * Created by koval on 29.01.2016.
- */
+import {Component} from 'angular2/core';
+
+@Component({
+    template: `
+    <h2>About</h2>
+    <p></p>`
+})
+export class AboutComponent { }
