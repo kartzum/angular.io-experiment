@@ -1,23 +1,21 @@
-import {Component} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Component, DynamicComponentLoader, ElementRef} from 'angular2/core';
+import {RouteConfig} from 'angular2/router';
 
 import {StartComponent} from './start.component';
 import {AboutComponent} from './about.component';
 
+import {ShellComponent} from './shell.component'
+
 @Component({
     selector: 'app',
-    template: `
-    <h1>App</h1>
-    <nav>
-      <a [routerLink]="['Start']">Start</a>
-      <a [routerLink]="['About']">About</a>
-    </nav>
-    <router-outlet></router-outlet>
-    `,
-    directives: [ROUTER_DIRECTIVES]
+    template: ''
 })
 @RouteConfig([
-    {path:'/start', name: 'Start', component: StartComponent},
+    {path:'/', name: 'Start', component: StartComponent},
     {path:'/about', name: 'About', component: AboutComponent}
 ])
-export class AppComponent { }
+export class AppComponent {
+    constructor(dynamicComponentLoader: DynamicComponentLoader, elementRef: ElementRef) {
+        dynamicComponentLoader.loadNextToLocation(ShellComponent, elementRef);
+    }
+}

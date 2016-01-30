@@ -1,3 +1,9 @@
-/**
- * Created by koval on 30.01.2016.
- */
+import {Component} from 'angular2/core';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
+
+@Component({
+    selector: 'shell-component',
+    templateUrl: 'app/shell.html',
+    directives: [ROUTER_DIRECTIVES]
+})
+export class ShellComponent { }
