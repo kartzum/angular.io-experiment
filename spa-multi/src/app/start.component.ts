@@ -1,8 +1,18 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
+
+import {Block} from './block';
+import {BlockService} from './block.service';
 
 @Component({
-    template: `
-    <h2>Start</h2>
-    <p></p>`
+    templateUrl: 'app/start.html'
 })
-export class StartComponent { }
+export class StartComponent {
+    blocks: Block[];
+
+    constructor(private _blockService:BlockService) {
+    }
+
+    ngOnInit() {
+        this._blockService.getBlocks().then(blocks => this.blocks = blocks);
+    }
+}
