@@ -35,6 +35,7 @@ export class BlockService {
                 result.push(this._blocks[i]);
             }
         }
-        return Promise.resolve(result);
+        var pages = size / this._count;
+        return Promise.resolve({blocks:result, pages: pages});
     }
 }
