@@ -1,8 +1,9 @@
-import {Component, DynamicComponentLoader, ElementRef} from 'angular2/core';
+import {Component, View, DynamicComponentLoader, ElementRef, OnInit} from 'angular2/core';
 import {RouteConfig, RouteDefinition, Route} from 'angular2/router';
 
-import {ShellComponent} from './shell.component'
 import {ROUTES} from './routes';
+
+declare var System:any;
 
 @Component({
     selector: 'app',
@@ -11,9 +12,14 @@ import {ROUTES} from './routes';
 @RouteConfig(ROUTES)
 export class AppComponent {
     constructor(
-        dynamicComponentLoader: DynamicComponentLoader,
-        elementRef: ElementRef
+        private _dynamicComponentLoader: DynamicComponentLoader,
+        private _elementRef: ElementRef
     ) {
-        dynamicComponentLoader.loadNextToLocation(ShellComponent, elementRef);
+    }
+
+    ngOnInit() {
+        System.import('app/shell.component').then(function(component) {
+            this._dynamicComponentLoader.loadNextToLocation(component.default, this._elementRef);
+        }.bind(this));
     }
 }

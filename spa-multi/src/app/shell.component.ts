@@ -6,4 +6,4 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
     templateUrl: 'app/shell.html',
     directives: [ROUTER_DIRECTIVES]
 })
-export class ShellComponent { }
+export default class ShellComponent { }
